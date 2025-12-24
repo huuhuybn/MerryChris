@@ -300,6 +300,35 @@
                 transform: translateY(0);
             }
         }
+
+        .toggle-effects-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            font-size: 1.5rem;
+        }
+
+        .toggle-effects-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .effects-disabled .santa-container {
+            display: none;
+        }
     </style>
 </head>
 
@@ -405,6 +434,10 @@
         <span>🎵</span>
     </div>
 
+    <div class="toggle-effects-btn" onclick="toggleEffects()" title="Toggle Christmas Effects">
+        🎁
+    </div>
+
     <!-- Santa Animation -->
     <div class="santa-container">
         🦌🦌🛷🎅
@@ -444,6 +477,7 @@
             isPlaying = !isPlaying;
         }
     </script>
+    </script>
     <script>
         const names = [
             "Trần Nguyễn Quốc Huy",
@@ -458,7 +492,11 @@
             "Nguyễn Đức Minh"
         ];
 
+        let effectsEnabled = true;
+
         function createSnowflake() {
+            if (!effectsEnabled) return;
+
             const snowflake = document.createElement('div');
             snowflake.classList.add('snowflake');
 
@@ -480,10 +518,21 @@
 
             setTimeout(() => {
                 snowflake.remove();
-            }, 5000);
+            }, 5000 * 3); // Extended timeout to match longer animation
         }
 
-        setInterval(createSnowflake, 200); // Slightly slower creation for names readability
+        setInterval(createSnowflake, 200);
+
+        function toggleEffects() {
+            effectsEnabled = !effectsEnabled;
+            document.body.classList.toggle('effects-disabled');
+
+            // If disabled, remove existing snowflakes immediately
+            if (!effectsEnabled) {
+                const existingSnowflakes = document.querySelectorAll('.snowflake');
+                existingSnowflakes.forEach(s => s.remove());
+            }
+        }
     </script>
 </body>
 
