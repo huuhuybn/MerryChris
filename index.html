@@ -229,8 +229,22 @@
         }
 
         @keyframes fall {
-            to {
-                transform: translateY(100vh);
+            0% {
+                transform: translateY(-10vh) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(50vh) translateX(20px);
+            }
+
+            100% {
+                transform: translateY(100vh) translateX(-20px);
+                opacity: 0.2;
             }
         }
 
@@ -250,6 +264,41 @@
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 25px -10px rgba(139, 92, 246, 0.7);
+        }
+
+        .santa-container {
+            position: fixed;
+            bottom: 10px;
+            left: -300px;
+            font-size: 3rem;
+            z-index: 1001;
+            animation: flyAcross 15s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+            pointer-events: none;
+        }
+
+        @keyframes flyAcross {
+            0% {
+                left: -300px;
+                transform: translateY(0);
+            }
+
+            25% {
+                transform: translateY(-20px);
+            }
+
+            50% {
+                transform: translateY(0);
+            }
+
+            75% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                left: 100%;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -356,6 +405,11 @@
         <span>🎵</span>
     </div>
 
+    <!-- Santa Animation -->
+    <div class="santa-container">
+        🦌🦌🛷🎅
+    </div>
+
     <audio id="bgMusic" loop>
         <source src="JingleBells.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -419,7 +473,7 @@
             }
 
             snowflake.style.left = Math.random() * 100 + 'vw';
-            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // Slower duration: 5-10 seconds for floating effect
             snowflake.style.opacity = Math.random();
 
             document.body.appendChild(snowflake);
