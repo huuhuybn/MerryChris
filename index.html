@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees System Project - Python Task</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 10px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #fff;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .code-snippet {
+            background: #0f1117;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding-bottom: 20px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .badge-core {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        .badge-advanced {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .music-control.playing {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 15px var(--secondary-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: #fff;
+            font-size: 1.2em;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            z-index: 9999;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Employees System</h1>
+            <div class="subtitle">Python Management Application Specification</div>
+        </header>
+
+        <img src="employees_system_banner.png" alt="Employees System Banner" class="hero-image">
+
+        <section>
+            <h2>Project Overview</h2>
+            <p>
+                The <strong>Employees System</strong> is a Python-based console application designed to manage employee
+                records within an organization.
+                The objective is to create a robust system that allows for the manipulation of employee data through a
+                user-friendly command-line interface (CLI).
+                This project focuses on using core Python concepts such as lists, dictionaries, functions, and control
+                flow.
+            </p>
+        </section>
+
+        <section>
+            <h2>Core Features</h2>
+
+            <h3>1. Add New Employee</h3>
+            <p>The system must allow the administrator to input details for a new employee and store them in the
+                database.</p>
+            <ul>
+                <li><strong>Input Requirements:</strong> Unique Employee ID, Full Name, Age, and Salary.</li>
+                <li><strong>Validation:</strong> Ensure the ID is unique and Age/Salary are positive integers.</li>
+            </ul>
+
+            <h3>2. List Existing Employees</h3>
+            <p>Display a comprehensive list of all employees currently stored in the system.</p>
+            <ul>
+                <li><strong>Format:</strong> The output should be formatted as a table or a clear list for readability.
+                </li>
+                <li><strong>Example:</strong> <code>ID: 101 | Name: John Doe | Age: 30 | Salary: $50,000</code></li>
+            </ul>
+
+            <h3>3. Delete Employees by Age Range</h3>
+            <p>Ideally suited for bulk administrative tasks, this feature facilitates removing employees who fall within
+                a specific age demographic.</p>
+            <ul>
+                <li><strong>Input:</strong> Minimum Age and Maximum Age.</li>
+                <li><strong>Logic:</strong> Iterate through the list and remove records where: <br>
+                    <code>min_age <= employee_age <= max_age</code>
+                </li>
+            </ul>
+
+            <h3>4. Update Salary by Name</h3>
+            <p>A specific utility to adjust the compensation of an employee identified by their name.</p>
+            <ul>
+                <li><strong>Input:</strong> Employee Name and New Salary amount.</li>
+                <li><strong>Behavior:</strong> Search for the employee by name. If found, update the salary field. If
+                    multiple employees have the same name, consider asking for ID or updating all (specify in
+                    implementation).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Technical Requirements</h2>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <div>
+                    <span class="badge badge-core">Data Structures</span>
+                    <p>Use <code>Lists</code> of <code>Dictionaries</code> or <code>Classes</code> to represent employee
+                        data.</p>
+                </div>
+                <div>
+                    <span class="badge badge-advanced">Interface</span>
+                    <p>Implement a <code>while</code> loop menu system to keep the program running until the user
+                        chooses to exit.</p>
+                </div>
+            </div>
+            <p><strong>Sample Menu Structure:</strong></p>
+            <div class="code-snippet">
+                <pre>
+1. Add New Employee
+2. Show All Employees
+3. Delete Employees (Age Range)
+4. Update Salary
+5. Exit
+</pre>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2025 Employees System Project Specification. Designed for Python Learners.
+        </footer>
+    </div>
+
+    <div class="music-control" id="musicControl" onclick="toggleMusic()" title="Toggle Jingle Bells">
+        <span>🎵</span>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="JingleBells.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        const control = document.getElementById('musicControl');
+        let isPlaying = false;
+
+        // Try to autoplay
+        window.addEventListener('load', () => {
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    isPlaying = true;
+                    control.classList.add('playing');
+                }).catch(error => {
+                    console.log("Autoplay prevented by browser policy.");
+                });
+            }
+        });
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                control.classList.remove('playing');
+            } else {
+                audio.play();
+                control.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 100);
+    </script>
+</body>
+
+</html>
