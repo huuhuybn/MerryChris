@@ -332,7 +332,7 @@
     </style>
 </head>
 
-<body>
+<body class="effects-disabled">
 
     <div class="container">
         <header>
@@ -345,11 +345,14 @@
         <section>
             <h2>Project Overview</h2>
             <p>
-                The <strong>Employees System</strong> is a Python-based console application designed to manage employee
+                The <strong>Employees System</strong> is a Python-based console application designed to manage
+                employee
                 records within an organization.
-                The objective is to create a robust system that allows for the manipulation of employee data through a
+                The objective is to create a robust system that allows for the manipulation of employee data through
+                a
                 user-friendly command-line interface (CLI).
-                This project focuses on using core Python concepts such as lists, dictionaries, functions, and control
+                This project focuses on using core Python concepts such as lists, dictionaries, functions, and
+                control
                 flow.
             </p>
         </section>
@@ -368,13 +371,15 @@
             <h3>2. List Existing Employees</h3>
             <p>Display a comprehensive list of all employees currently stored in the system.</p>
             <ul>
-                <li><strong>Format:</strong> The output should be formatted as a table or a clear list for readability.
+                <li><strong>Format:</strong> The output should be formatted as a table or a clear list for
+                    readability.
                 </li>
                 <li><strong>Example:</strong> <code>ID: 101 | Name: John Doe | Age: 30 | Salary: $50,000</code></li>
             </ul>
 
             <h3>3. Delete Employees by Age Range</h3>
-            <p>Ideally suited for bulk administrative tasks, this feature facilitates removing employees who fall within
+            <p>Ideally suited for bulk administrative tasks, this feature facilitates removing employees who fall
+                within
                 a specific age demographic.</p>
             <ul>
                 <li><strong>Input:</strong> Minimum Age and Maximum Age.</li>
@@ -387,7 +392,8 @@
             <p>A specific utility to adjust the compensation of an employee identified by their name.</p>
             <ul>
                 <li><strong>Input:</strong> Employee Name and New Salary amount.</li>
-                <li><strong>Behavior:</strong> Search for the employee by name. If found, update the salary field. If
+                <li><strong>Behavior:</strong> Search for the employee by name. If found, update the salary field.
+                    If
                     multiple employees have the same name, consider asking for ID or updating all (specify in
                     implementation).</li>
             </ul>
@@ -398,7 +404,8 @@
             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                 <div>
                     <span class="badge badge-core">Data Structures</span>
-                    <p>Use <code>Lists</code> of <code>Dictionaries</code> or <code>Classes</code> to represent employee
+                    <p>Use <code>Lists</code> of <code>Dictionaries</code> or <code>Classes</code> to represent
+                        employee
                         data.</p>
                 </div>
                 <div>
@@ -477,7 +484,6 @@
             isPlaying = !isPlaying;
         }
     </script>
-    </script>
     <script>
         const names = [
             "Trần Nguyễn Quốc Huy",
@@ -492,7 +498,7 @@
             "Nguyễn Đức Minh"
         ];
 
-        let effectsEnabled = true;
+        let effectsEnabled = false;
 
         function createSnowflake() {
             if (!effectsEnabled) return;
